@@ -49,8 +49,10 @@ Simply run `tellme` followed by your question in quotes:
 tellme "how do I find all files larger than 100MB?"
 ```
 
+or simply 
+
 ```bash
-tellme "how to undo the last git commit"
+tellme how to undo the last git commit
 ```
 
 The tool will detect your shell (e.g., `/bin/zsh`) and tailor the answer to it.
