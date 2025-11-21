@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"strings"
+	"tellme/utils"
 
 	"github.com/charmbracelet/glamour"
 	"github.com/charmbracelet/huh/spinner"
@@ -44,7 +45,7 @@ func main() {
 	interaction.prompt = fmt.Sprintf("Context: The user is asking a programming question from within the %s shell. Give a short answer and 1 or 2 examples.\nQuestion: %s", shell, query)
 
 	_ = spinner.New().
-		Title("thinking about it...").
+		Title(utils.GetRandomWaitingMessage()).
 		Action(getThisAnswer).
 		Run()
 
