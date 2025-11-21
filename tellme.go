@@ -19,6 +19,7 @@ type Interaction struct {
 	response string
 }
 
+// Global interaction variable to more easily enable spinner ui
 var interaction Interaction
 
 func main() {
@@ -42,17 +43,15 @@ func main() {
 
 	interaction.prompt = fmt.Sprintf("Context: The user is asking a programming question from within the %s shell. Give a short answer and 1 or 2 examples.\nQuestion: %s", shell, query)
 
-	r, _ := glamour.NewTermRenderer(
-		// detect background color and pick either the default dark or light theme
-		glamour.WithAutoStyle(),
-	)
-
 	_ = spinner.New().
 		Title("thinking about it...").
 		Action(getThisAnswer).
 		Run()
 
-	//getAnswer(&interaction)
+	r, _ := glamour.NewTermRenderer(
+		// detect background color and pick either the default dark or light theme
+		glamour.WithAutoStyle(),
+	)
 
 	fmt.Println(r.Render(interaction.response))
 }
