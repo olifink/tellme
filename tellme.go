@@ -54,7 +54,8 @@ func main() {
 		glamour.WithAutoStyle(),
 	)
 
-	fmt.Println(r.Render(interaction.response))
+	rendered, _ := r.Render(interaction.response)
+	fmt.Println(rendered)
 }
 
 func getThisAnswer() {
