@@ -36,10 +36,16 @@ func main() {
 	}
 	query := strings.Join(os.Args[1:], " ")
 
-	// Get the current shell
+	// Get the current shell. On Windows PowerShell won't set SHELL,
+	// so detect PowerShell by checking PowerShell-specific env vars.
 	shell := os.Getenv("SHELL")
 	if shell == "" {
-		shell = "unknown shell"
+		// `PSModulePath` is commonly present in PowerShell sessions.
+		if os.Getenv("PSModulePath") != "" {
+			shell = "powershell"
+		} else {
+			shell = "unknown shell"
+		}
 	}
 
 	interaction.prompt = fmt.Sprintf("Context: The user is asking a programming question from within the %s shell. Give a short answer and 1 or 2 examples.\nQuestion: %s", shell, query)
